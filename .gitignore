@@ -1,0 +1,9 @@
+venv/
+venv310/
+venv311/
+dataset/
+*.zip
+.vscode/
+__pycache__/
+*.h5
+*.keras
