@@ -9,12 +9,34 @@ This project demonstrates the application of Deep Learning, Computer Vision, and
 
 Objectives
 
-The main objectives of this project are:
+->The main objectives of this project are:
 
-To develop a deep learning model capable of detecting lung diseases from X-ray images.
+->To develop a deep learning model capable of detecting lung diseases from X-ray images.
 
-To apply transfer learning using the VGG16 architecture for improved accuracy.
+->To apply transfer learning using the VGG16 architecture for improved accuracy.
 
-To create a user-friendly web interface where users can upload images and receive predictions.
+->To create a user-friendly web interface where users can upload images and receive predictions.
 
-To demonstrate the integration of machine learning models with web applications.
+->To demonstrate the integration of machine learning models with web applications.
+# Technologies Used
+
+# Programming Language
+Python
+Machine Learning & Deep Learning
+TensorFlow
+Keras
+NumPy
+OpenCV
+
+# Web Development
+HTML
+CSS
+Flask (for backend integration)
+
+# Tools
+Jupyter Notebook
+VS Code
+Git
+GitHub
+
+
