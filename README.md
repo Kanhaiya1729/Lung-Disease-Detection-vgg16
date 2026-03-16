@@ -21,22 +21,22 @@ Objectives
 # Technologies Used
 
 # Programming Language
-Python
-Machine Learning & Deep Learning
-TensorFlow
-Keras
-NumPy
-OpenCV
+.Python 
+.Machine Learning & Deep Learning
+.TensorFlow
+.Keras
+.NumPy
+.OpenCV
 
 # Web Development
-HTML
-CSS
-Flask (for backend integration)
+.HTML
+.CSS
+.Flask (for backend integration)
 
 # Tools
-Jupyter Notebook
-VS Code
-Git
-GitHub
+.Jupyter Notebook
+.VS Code
+.Git
+.GitHub
 
 
