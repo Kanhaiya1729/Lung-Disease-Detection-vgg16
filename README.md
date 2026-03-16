@@ -1,4 +1,4 @@
-Lung Disease Detection Using VGG16
+# Lung Disease Detection Using VGG16
 Project Overview
 
 Lung diseases are a major health concern worldwide and early detection plays an important role in improving patient outcomes. This project focuses on building a deep learning based system that can detect lung diseases from chest X-ray images.
