@@ -1,122 +1,127 @@
-# Lung Disease Detection Using VGG16
-Project Overview
+# Lung Disease Detection Using Deep Learning
 
-Lung diseases are a major health concern worldwide and early detection plays an important role in improving patient outcomes. This project focuses on building a deep learning based system that can detect lung diseases from chest X-ray images.
+A deep learning application that classifies chest X-ray images as **Normal** or **Pneumonia** using VGG16 Transfer Learning, deployed via a Flask web interface.
 
-The system uses Transfer Learning with the VGG16 Convolutional Neural Network to classify chest X-ray images into different disease categories. The trained model is integrated with a web interface, allowing users to upload an X-ray image and receive predictions instantly.
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange?style=flat-square&logo=tensorflow)
+![Flask](https://img.shields.io/badge/Flask-2.x-lightgrey?style=flat-square&logo=flask)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-This project demonstrates the application of Deep Learning, Computer Vision, and Web Development to solve a real-world healthcare problem.
+---
 
-Objectives
+## Overview
 
-->The main objectives of this project are:
+This project addresses automated lung disease screening using computer vision. A VGG16 model, pre-trained on ImageNet and fine-tuned on chest X-ray data, is integrated into a Flask web application where users can upload an X-ray image and receive an instant classification result.
 
-->To develop a deep learning model capable of detecting lung diseases from X-ray images.
+The project covers the full ML lifecycle — data preprocessing, model training, evaluation, serialization, and deployment.
 
-->To apply transfer learning using the VGG16 architecture for improved accuracy.
+---
 
-->To create a user-friendly web interface where users can upload images and receive predictions.
+## Dataset
 
-->To demonstrate the integration of machine learning models with web applications.
-# Technologies Used
+| Field | Details |
+|---|---|
+| **Name** | Chest X-Ray Images (Pneumonia) |
+| **Source** | [Kaggle](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia) |
+| **Creator** | Paul Mooney |
+| **Classes** | `NORMAL`, `PNEUMONIA` |
+| **Split** | Train / Validation / Test |
 
-# Programming Language
-.Python 
-.Machine Learning & Deep Learning
-.TensorFlow
-.Keras
-.NumPy
-.OpenCV
+> Download the dataset from Kaggle and place the `chest_xray/` folder in the project root before training.
 
-# Web Development
-.HTML
-.CSS
-.Flask (for backend integration)
+---
 
-# Tools
-.Jupyter Notebook
-.VS Code
-.Git
-.GitHub
+## Tech Stack
 
-# Deep Learning Model
+| Layer | Tools |
+|---|---|
+| Language | Python 3.8+ |
+| Deep Learning | TensorFlow, Keras, VGG16 |
+| Image Processing | OpenCV, NumPy |
+| Data Handling | Pandas, NumPy |
+| Backend | Flask |
+| Frontend | HTML, CSS |
 
-The model used in this project is based on VGG16, a popular Convolutional Neural Network architecture developed for image classification tasks.
+---
 
-Key features of the model:
+## Project Structure
 
-->Uses Transfer Learning
-->Pre-trained weights from ImageNet
-->Custom classification layers added for lung disease detection
-->Fine-tuning to improve prediction performance
-->The model processes chest X-ray images and classifies them based on learned patterns.
+```
+pythonproject/
+├── app.py                    # Flask application — routing and inference
+├── predict_demo.py           # Prediction pipeline — preprocessing and inference
+├── vgg_transfer_learning.py  # Model definition and training
+├── templates/
+│   └── index.html            # Upload UI and result display
+├── statics/                  # CSS and uploaded image assets
+├── README.md
+└── .gitignore
+```
 
-# Project Structure
-Lung-Disease-Detection-vgg16
-│
-├── pythonproject
-│   ├── app.py
-│   ├── predict_demo.py
-│   └── vgg_transfer_learning.py
-│
-├── templates
-│   └── index.html
-│
-├── statics
-│   └── style.css
-│
-├── dataset
-│
-├── .gitignore
-└── README.md
+---
 
-# Workflow of the Project
+## Setup & Installation
 
-->Collect and preprocess chest X-ray images.
-->Prepare the dataset for training.
-->Apply transfer learning using VGG16.
-->Train the model on the dataset.
-->Save the trained model.
-->Build a Flask web application.
-->Allow users to upload an X-ray image.
-->Run the model prediction.
-->Display the predicted result on the webpage.
-# How to Run the Project
-Follow these steps to run the project locally.
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/lung-disease-detection.git
+cd lung-disease-detection
 
-Step 1 – Clone the repository
-git clone https://github.com/your-username/Lung-Disease-Detection-vgg16.git
-Step 2 – Navigate to the project directory
-cd Lung-Disease-Detection-vgg16
-Step 3 – Install required libraries
-pip install -r requirements.txt
-Step 4 – Run the Flask application
+# 2. Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate        # macOS/Linux
+venv\Scripts\activate           # Windows
+
+# 3. Install dependencies
+pip install tensorflow keras flask numpy pandas opencv-python
+
+# 4. Train the model
+python vgg_transfer_learning.py
+
+# 5. Start the application
 python app.py
-Step 5 – Open the web application
-Open the browser and go to:
-http://localhost:5000
-Upload a chest X-ray image and the system will predict the disease.
+```
 
-# Key Features
+Visit `http://127.0.0.1:5000/` in your browser.
 
-->Automated lung disease detection from X-ray images
-->Deep learning based classification
-->Transfer learning using VGG16
-->Web-based user interface
-->Real-time predictions
-->Easy to use interface
+---
 
-# Author
+## How It Works
 
-Kanhaiya Kumar Sahani
+1. User uploads a chest X-ray image through the web interface
+2. Flask receives the file and passes it to the prediction pipeline
+3. The image is resized to 224×224 and pixel values are normalized to `[0, 1]`
+4. The trained VGG16 model runs inference on the preprocessed image
+5. The predicted class (`NORMAL` or `PNEUMONIA`) is returned and displayed
 
-->Engineering Student passionate about:
-->Artificial Intelligence
-->Machine Learning
-->Web Development
-->Software Engineering
+---
 
-# License
-This project is created for educational and research purposes.
+## Why VGG16 Transfer Learning?
 
+Training a CNN from scratch on medical images requires large amounts of labeled data and significant compute. VGG16, pre-trained on 1.2M ImageNet images, has already learned robust feature representations — edges, textures, and spatial patterns — that transfer well to chest X-ray analysis.
+
+By freezing the convolutional base and training only the custom classification head, the model achieves strong performance with faster training and better generalization on a smaller dataset.
+
+---
+
+## Future Improvements
+
+- Extend to multi-class classification (COVID-19, Tuberculosis, etc.)
+- Add Grad-CAM heatmaps for model explainability
+- Expose a REST API for third-party integration
+- Containerize with Docker for portable deployment
+
+---
+
+## Author
+
+**Your Name**  
+B.Tech, Computer Science & Engineering  
+[GitHub](https://github.com/Kanhaiya1729) · [LinkedIn](https://www.linkedin.com/in/kanhaiya-sahani-11487b275/) · kanhaiya.sahani2019@gmail.com
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
 
